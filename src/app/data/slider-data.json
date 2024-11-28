@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Gripper-1",
+    "tagline": "Experience Precision",
+    "image": "/images/gripper-(1).jpg",
+    "buttons": [
+      {
+        "id": 1,
+        "text": "Learn More",
+        "link": "https://example.com/gripper-1",
+        "type": "btn-dark btn-circle"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Gripper-2",
+    "tagline": "Advanced Robotics",
+    "image": "/images/gripper-(2).png",
+    "buttons": [
+      {
+        "id": 1,
+        "text": "Learn More",
+        "link": "https://example.com/gripper-2",
+        "type": "btn-dark btn-circle"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Gripper-3",
+    "tagline": "Revolutionizing Automation",
+    "image": "/images/gripper-(3).png",
+    "buttons": [
+      {
+        "id": 1,
+        "text": "Learn More",
+        "link": "https://example.com/gripper-3",
+        "type": "btn-dark btn-circle"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Gripper-4",
+    "tagline": "Precision and Performance",
+    "image": "/images/gripper-(4).png",
+    "buttons": [
+      {
+        "id": 1,
+        "text": "Learn More",
+        "link": "https://example.com/gripper-4",
+        "type": "btn-dark btn-circle"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Gripper-5",
+    "tagline": "Empowering Technology",
+    "image": "/images/gripper-(5).png",
+    "buttons": [
+      {
+        "id": 1,
+        "text": "Learn More",
+        "link": "https://example.com/gripper-5",
+        "type": "btn-dark btn-circle"
+      }
+    ]
+  }
+]
