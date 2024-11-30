@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+// new stuff
 export default function ProjectPage() {
   return (
     <main className="flex flex-col items-center p-8 md:p-16 text-black">
