@@ -32,9 +32,9 @@ export default function Example() {
           <a href="/contact" className="text-sm font-semibold text-gray-500">
             contact
           </a>
-          <a href="/" className="text-sm font-semibold text-gray-500">
+          <Link href="/" className="text-sm font-semibold text-gray-500">
             about
-          </a>
+          </Link>
           <a href="/modelling" className="text-sm font-semibold text-gray-500">
             modelling
           </a>
@@ -97,13 +97,13 @@ export default function Example() {
                   >
                     contact
                   </a>
-                  <a
+                  <Link
                     href="/"
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-500 hover:bg-gray-100"
                   >
                     about
-                  </a>
+                  </Link>
                   <a
                     href="/modelling"
                     onClick={() => setMobileMenuOpen(false)}
