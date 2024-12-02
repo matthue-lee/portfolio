@@ -182,7 +182,7 @@ export default function ContactPage() {
         {/* Right Column: Illustration */}
         <div className="hidden lg:block">
           <img
-            src="/images/main3.jpg" // Replace with your image path
+            src="/images/main3.JPG" // Replace with your image path
             alt="Illustration"
             className="rounded-lg shadow-lg"
           />
