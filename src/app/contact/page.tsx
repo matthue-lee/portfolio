@@ -149,7 +149,7 @@ export default function ContactPage() {
             </div>
 
             {/* Checkbox */}
-            <div className="flex items-start">
+            {/* <div className="flex items-start">
               <input
                 id="newsletter"
                 name="newsletter"
@@ -161,7 +161,7 @@ export default function ContactPage() {
               <label htmlFor="newsletter" className="ml-2 block text-sm text-gray-700">
                 Please sign me up for the Physica newsletter
               </label>
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <button
@@ -190,7 +190,7 @@ export default function ContactPage() {
       </div>
 
       {/* Footer Links */}
-      <div className="mt-12 text-center lg:text-left">
+      {/* <div className="mt-12 text-center lg:text-left">
         <p className="text-sm text-gray-500">
           <a href="/contact" className="hover:underline">
             Contact Us
@@ -205,7 +205,7 @@ export default function ContactPage() {
           </a>
         </p>
         <p className="mt-4 text-xs text-gray-400">© 2023 All Rights Reserved</p>
-      </div>
+      </div> */}
     </section>
   );
 }
