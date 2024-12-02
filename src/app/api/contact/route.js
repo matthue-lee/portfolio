@@ -5,7 +5,7 @@ export async function POST(request) {
     const formData = await request.json();
 
     const { name, email, topic, message, newsletter } = formData;
-
+    console.log(process.env.SMTP_USER)
     // Validate form data
     if (!name || !email || !topic || !message) {
       return new Response(
