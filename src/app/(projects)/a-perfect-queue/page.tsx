@@ -42,7 +42,6 @@ export default function ProjectPage() {
           <li>Integrated backend logic with Node.js and Express to handle user inputs and data processing.</li>
           <li>Connected to external services (e.g., Spotify API) for playlist creation via RESTful APIs.</li>
           <li>Designed serverless functions for efficient backend operations, leveraging Next.js capabilities.</li>
-          <li>Potentially incorporated authentication mechanisms like OAuth2.0 for secure user access.</li>
         </ul>
 
         {/* Development Skills Section */}

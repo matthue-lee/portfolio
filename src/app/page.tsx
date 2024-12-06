@@ -26,6 +26,17 @@ const projects = [
       "https://images.unsplash.com/photo-1515907464394-2df9c8a6d134?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Interface with dark mode aesthetics
     ],
   },
+  {
+    title: "Resposive Website",
+    slug: "responsive-website",
+    description:
+      "An innovative smart mirror system that combines modern design with functionality, providing real-time updates on weather, calendar events, and more.",
+    tags: ["Smart Technology", "Real-Time Updates", "Elegant Design"],
+    images: [
+      "https://images.unsplash.com/photo-1700556581902-6aa21e96507c?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Magic Mirror concept
+      "https://images.unsplash.com/photo-1662958882371-9b3c5d9a0c25?q=80&w=3131&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Smart home integration
+    ],
+  },
 
   {
     title: "Underactuated Gripper",
