@@ -83,20 +83,14 @@ export default function MagicMirrorPage() {
               height={300}
               className="rounded-lg object-cover shadow-md"
             />
-            <Image
+            {/* <Image
               src="/images/mm1.jpeg"
               alt="Magic Mirror View 2"
               width={400}
               height={300}
               className="rounded-lg object-cover shadow-md"
-            />
-            <Image
-              src="/images/magic-mirror-3.jpg"
-              alt="Magic Mirror View 3"
-              width={400}
-              height={300}
-              className="rounded-lg object-cover shadow-md"
-            />
+            /> */}
+
           </div>
         </div>
       </section>

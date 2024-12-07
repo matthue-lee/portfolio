@@ -32,7 +32,7 @@ const MobileFirstPortfolioPage = () => {
             <h3 className="text-xl font-medium mb-2">Mobile Version</h3>
             <div className="relative w-full h-64 sm:h-80">
               <Image
-                src="/images/home-mobile.png"
+                src="/images/home mobile.png"
                 alt="Mobile version of the home page"
                 layout="fill"
                 objectFit="contain"
@@ -43,7 +43,7 @@ const MobileFirstPortfolioPage = () => {
             <h3 className="text-xl font-medium mb-2">Desktop Version</h3>
             <div className="relative w-full h-64 sm:h-80">
               <Image
-                src="/images/home-desktop.png"
+                src="/images/home desktop.png"
                 alt="Desktop version of the home page"
                 layout="fill"
                 objectFit="contain"
@@ -60,7 +60,7 @@ const MobileFirstPortfolioPage = () => {
             <h3 className="text-xl font-medium mb-2">Mobile Version</h3>
             <div className="relative w-full h-64 sm:h-80">
               <Image
-                src="/images/hikes-mobile.png"
+                src="/images/hikes mobile.png"
                 alt="Mobile version of the hikes page"
                 layout="fill"
                 objectFit="contain"
@@ -71,7 +71,7 @@ const MobileFirstPortfolioPage = () => {
             <h3 className="text-xl font-medium mb-2">Desktop Version</h3>
             <div className="relative w-full h-64 sm:h-80">
               <Image
-                src="/images/hikes-desktop.png"
+                src="/images/hikes desktop.png"
                 alt="Desktop version of the hikes page"
                 layout="fill"
                 objectFit="contain"

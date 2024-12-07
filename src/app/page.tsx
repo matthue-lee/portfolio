@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link'
+import Link from 'next/link';
 
 const projects = [
   {
@@ -11,8 +11,7 @@ const projects = [
       "An innovative smart mirror system that combines modern design with functionality, providing real-time updates on weather, calendar events, and more.",
     tags: ["Smart Technology", "Real-Time Updates", "Elegant Design"],
     images: [
-      "https://images.unsplash.com/photo-1700556581902-6aa21e96507c?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Magic Mirror concept
-      "https://images.unsplash.com/photo-1662958882371-9b3c5d9a0c25?q=80&w=3131&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Smart home integration
+      "/images/coloredMirror.jpg"
     ],
   },
   {
@@ -21,23 +20,18 @@ const projects = [
     description:
       "An intuitive playlist creation tool that allows users to effortlessly generate playlists from their recently queued songs. Designed with a sleek interface and seamless integration with music APIs.",
     tags: ["Playlist Creation", "User-Friendly", "Music Integration"],
-    images: [
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Music playlist concept
-      "https://images.unsplash.com/photo-1515907464394-2df9c8a6d134?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Interface with dark mode aesthetics
-    ],
+    images: ["/images/a perfect queue home.jpeg"],
   },
   {
-    title: "Resposive Website",
+    title: "Responsive Website",
     slug: "responsive-website",
     description:
-      "An innovative smart mirror system that combines modern design with functionality, providing real-time updates on weather, calendar events, and more.",
-    tags: ["Smart Technology", "Real-Time Updates", "Elegant Design"],
+      "A website designed to offer a seamless user experience across devices, adapting dynamically to mobile, tablet, and desktop layouts.",
+    tags: ["Responsive Design", "Dynamic Layouts", "Cross-Device Compatibility"],
     images: [
-      "https://images.unsplash.com/photo-1700556581902-6aa21e96507c?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Magic Mirror concept
-      "https://images.unsplash.com/photo-1662958882371-9b3c5d9a0c25?q=80&w=3131&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Smart home integration
+      "/images/responsive comparison.png"
     ],
   },
-
   {
     title: "Underactuated Gripper",
     slug: "gripper",
@@ -45,8 +39,7 @@ const projects = [
       "A cutting-edge robotic gripper that mimics human dexterity to securely grasp objects of various shapes and sizes with minimal actuation.",
     tags: ["Robotics", "Human-Like Dexterity", "Innovative Design"],
     images: [
-      "https://images.unsplash.com/photo-1471584363844-b3909b58d6f7?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Robotic arm close-up
-      "https://images.unsplash.com/photo-1545660190-750cfd47fdde?q=80&w=2956&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Precision gripping
+      "https://images.unsplash.com/photo-1471584363844-b3909b58d6f7?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -56,26 +49,20 @@ const projects = [
       "A streamlined library management system that enables users to track borrowed books, due dates, and availability with ease.",
     tags: ["Library Management", "Easy Tracking", "User-Friendly"],
     images: [
-      "https://images.unsplash.com/photo-1498116535454-8877d66c3b83?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Organized library shelves
-      "https://images.unsplash.com/photo-1498605493985-d7d7593f905b?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Digital catalog interface
+      "https://images.unsplash.com/photo-1498116535454-8877d66c3b83?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
-  // {
-  //   title: "BudgetNav",
-  //   slug: "budget-nav",
-  //   description:
-  //     "A personal finance tool that empowers users to allocate budgets, track expenses, and gain insights into their spending habits.",
-  //   tags: ["Personal Finance", "Expense Tracking", "Budget Management"],
-  //   images: [
-  //     "https://images.unsplash.com/photo-1696673147643-28cdb0d8d11c?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Budget tracking interface
-  //     "https://images.unsplash.com/photo-1694819893189-10ce0b1cd6d7?q=80&w=2876&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Analytics dashboard
-  //   ],
-  // },
 ];
 
-
-
 export default function LandingPage() {
+  const mutedPalette = [
+    "rgba(204, 88, 3, 0.2)",  // Burnt Orange
+    "rgba(226, 113, 29, 0.2)", // Rusty Orange
+    "rgba(255, 149, 5, 0.2)",  // Deep Orange
+    "rgba(255, 182, 39, 0.2)", // Bright Orange
+    "rgba(255, 201, 113, 0.2)", // Light Yellow-Orange
+  ];
+
   return (
     <div className="bg-gray-100 text-gray-900 min-h-screen">
       {/* Main Content Section */}
@@ -130,17 +117,8 @@ export default function LandingPage() {
           {projects.map((project, index) => (
             <Link key={index} href={`/${project.slug}`} className="block">
               <div
-                className={`relative grid grid-cols-1 md:grid-cols-2 gap-6 items-center border shadow-sm rounded-xl p-6 sm:mx-2 transform transition-transform duration-300 hover:scale-105 ${
-                  index % 5 === 0
-                    ? "bg-[#DEE7EC]"
-                    : index % 5 === 1
-                    ? "bg-[#D1E7E0]"
-                    : index % 5 === 2
-                    ? "bg-[#F6E6C8]"
-                    : index % 5 === 3
-                    ? "bg-[#FAD5C6]"
-                    : "bg-[#F4B7A7]"
-                }`}
+                className={`relative grid md:grid-cols-2 items-center border shadow-sm rounded-xl p-6 sm:mx-2 transform transition-transform duration-300 hover:scale-105`}
+                style={{ backgroundColor: mutedPalette[index % mutedPalette.length] }}
               >
                 <div>
                   <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
@@ -156,15 +134,12 @@ export default function LandingPage() {
                     ))}
                   </ul>
                 </div>
-                <div className="flex flex-col space-y-4">
-                  {project.images.map((image, idx) => (
-                    <img
-                      key={idx}
-                      src={image}
-                      alt={`${project.title} image ${idx + 1}`}
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
-                  ))}
+                <div className="flex justify-end">
+                  <img
+                    src={project.images[0]}
+                    alt={`${project.title} image`}
+                    className="w-full h-64 object-cover rounded-lg"
+                  />
                 </div>
               </div>
             </Link>
