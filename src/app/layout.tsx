@@ -29,6 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
       >
+          <meta property="og:title" content="Matthew Lee | Full-Stack Developer & Innovator" />
+          <meta property="og:description" content="Explore Matthew Lee's portfolio, showcasing expertise in full-stack development, responsive design, and innovative web technologies." />
+          <meta property="og:image" content="https://www.matthewleeportfolio.com/images/main3.jpg" />
+          <meta property="og:url" content="https://www.matthewleeportfolio.com" />
+          <meta property="og:site_name" content="Matthew Lee Portfolio" />
+          <meta property="og:type" content="website" />
         <Navbar/>
         {children}
       </body>
