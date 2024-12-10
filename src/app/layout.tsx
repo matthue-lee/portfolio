@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
 import Navbar from './components/Navbar'
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +38,7 @@ export default function RootLayout({
           <meta property="og:type" content="website" />
         <Navbar/>
         {children}
+        <Analytics/>
       </body>
     </html>
   );
