@@ -9,7 +9,7 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gray-100">
+    <header className="bg-black">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -64,7 +64,7 @@ export default function Example() {
 
           {/* Sliding Menu */}
           <div
-            className={`fixed inset-y-0 right-0 z-30 w-full max-w-sm overflow-y-auto bg-white px-6 py-6 sm:ring-1 sm:ring-gray-900/10 transform ${
+            className={`fixed inset-y-0 right-0 z-30 w-full max-w-sm overflow-y-auto bg-black px-6 py-6 sm:ring-1 sm:ring-gray-900/10 transform ${
               mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             } transition-transform duration-300 ease-in-out`}
           >

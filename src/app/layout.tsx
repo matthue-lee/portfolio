@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black-900`}
       >
           <meta property="og:title" content="Matthew Lee | Full-Stack Developer & Innovator" />
           <meta property="og:description" content="Explore Matthew Lee's portfolio, showcasing expertise in full-stack development, responsive design, and innovative web technologies." />

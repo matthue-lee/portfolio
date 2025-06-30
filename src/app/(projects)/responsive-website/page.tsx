@@ -5,9 +5,9 @@ const MobileFirstPortfolioPage = () => {
     <main className="flex flex-col items-center justify-center px-4 md:px-16 lg:px-32 py-8">
       <section className="text-center mb-12">
         <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">Mobile-First Hiking Adventure Website</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">Mobile-First Tour Guiding Website</h1>
           <p className="text-lg md:text-xl text-gray-700">
-            This project showcases a hiking-themed website designed with a mobile-first approach. The platform provides users with detailed trail information, gear recommendations, and tips for planning their next adventure, all while maintaining a seamless and visually appealing experience across devices.
+            This project showcases a website designed with a mobile-first approach. The platform provides users with detailed trail information, gear recommendations, and tips for planning their next adventure, all while maintaining a seamless and visually appealing experience across devices.
           </p>
         </div>
       </section>
