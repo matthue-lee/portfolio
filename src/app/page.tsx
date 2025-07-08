@@ -5,20 +5,10 @@ import React from "react";
 import { outfit } from "./fonts/outfit";
 import SkillsSection from "./components/SkillsSection";
 import TimelineComponent from "./components/Timeline";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import HeroText from "./components/HeroText";
 
 export default function LandingPage() {
-	const introText = "A dedicated and passionate engineer with a strong interest in technology and innovation. I thrive in dynamic environments where I can apply my skills to solve complex problems and contribute to meaningful projects. With a blend of technical expertise and hands-on experience, I enjoy tackling new challenges and continuously growing as both an engineer and a developer.";
 	const textRef = React.useRef<HTMLDivElement>(null);
-	const { scrollYProgress } = useScroll({ target: textRef, offset: ["start end", "start start"] });
-
-	// Compute color MotionValues for each character at the top level
-	const colorMotionValues: MotionValue<string>[] = [];
-	for (let i = 0; i < introText.length; i++) {
-		const start = 0.68 + (i / introText.length) * 0.32;
-		const end = 0.68 + ((i + 1) / introText.length) * 0.32;
-		colorMotionValues.push(useTransform(scrollYProgress, [start, end], ["#6b7280", "#fff"]));
-	}
 
 	return (
 		<div className={`bg-black text-gray-200 min-h-screen w-full overflow-x-hidden overflow-y-hidden ${outfit.className}`}>
@@ -29,11 +19,9 @@ export default function LandingPage() {
 				</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 items-stretch h-[800px]">
 					<div ref={textRef} className="flex flex-col justify-center h-full">
-						<p className="text-lg lg:text-3xl leading-relaxed lg:leading-loose">
-							{introText.split("").map((char, i) => (
-								<motion.span key={i} style={{ color: colorMotionValues[i] }}>{char}</motion.span>
-							))}
-						</p>
+						<HeroText
+							text="A dedicated and passionate engineer with a strong interest in technology and innovation. I thrive in dynamic environments where I can apply my skills to solve complex problems and contribute to meaningful projects. With a blend of technical expertise and hands-on experience, I enjoy tackling new challenges and continuously growing as both an engineer and a developer."
+						/>
 					</div>
 					<div className="flex items-end h-full">
 						<Image
