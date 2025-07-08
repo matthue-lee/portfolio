@@ -33,7 +33,7 @@ const projects = [
 		title: "Library Tracker",
 		slug: "library-tracker",
 		description:
-			"A streamlined library management system that enables users to track borrowed books, due dates, and availability with ease.",
+			"An application that leverages computer vision and OCR technologies to automatically detect and extract book titles from images of book spines.",
 		tags: ["Library Management", "Easy Tracking", "User-Friendly"],
 		images: [
 			"https://images.unsplash.com/photo-1498116535454-8877d66c3b83?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

@@ -18,7 +18,7 @@ export default function RalphyPage() {
         </div>
         <div className="mt-12 w-full relative aspect-w-16 aspect-h-9">
           <Image
-            src="/images/ralphy-hero.png"
+            src="/images/ralphy schema.png"
             alt="Ralphy Hero"
             layout="fill"
             objectFit="cover"
@@ -47,7 +47,7 @@ export default function RalphyPage() {
             </div>
             <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/images/ralphy-dashboard.png"
+                src="/images/ralphy mock 2.png"
                 alt="Ralphy Dashboard"
                 fill
                 className="rounded-lg object-cover"
@@ -111,20 +111,24 @@ export default function RalphyPage() {
       {/* Gallery Section */}
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-semibold text-gray-200 text-center lg:text-left">
-            Gallery
-          </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {['ralphy 1.png', 'ralphy 3.png', 'ralphy 4.png', 'ralphy mock 1.png'].map((img, index) => (
-              <Image
-                key={index}
-                src={`/images/${img}`}
-                alt={`Ralphy Screenshot ${index + 1}`}
-                width={400}
-                height={300}
-                className="rounded-lg object-cover shadow-md"
-              />
-            ))}
+            {['ralphy 1.png', 'ralphy 3.png', 'ralphy 4.png', 'ralphy mock 1.png', 'ralphy schema.png'].map((img, index) => {
+              const isSchema = img === 'ralphy schema.png';
+              return (
+                <div
+                  key={index}
+                  className={isSchema ? 'col-span-1 md:col-span-2 lg:col-span-2' : ''}
+                >
+                  <Image
+                    src={`/images/${img}`}
+                    alt={`Ralphy Screenshot ${index + 1}`}
+                    width={isSchema ? 900 : 400}
+                    height={isSchema ? 600 : 300}
+                    className={`rounded-lg object-cover shadow-md ${isSchema ? 'w-full h-auto' : ''}`}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
