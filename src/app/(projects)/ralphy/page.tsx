@@ -86,10 +86,6 @@ export default function RalphyPage() {
           <ul className="mt-8 space-y-4 text-lg text-gray-200">
             <li className="flex items-start space-x-4">
               <span className="text-red-500 font-semibold">•</span>
-              <p>Receipt validation using Supabase Edge Functions and Zod.</p>
-            </li>
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
               <p>Dynamic dashboard with campaign filtering and modals via shadcn/ui.</p>
             </li>
             <li className="flex items-start space-x-4">
@@ -119,7 +115,7 @@ export default function RalphyPage() {
             Gallery
           </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {['ralphy-dashboard.png', 'receipt-upload.png', 'admin-table.png', 'offer-creator.png', 'campaign-modal.png'].map((img, index) => (
+            {['ralphy 1.png', 'ralphy 3.png', 'ralphy 4.png', 'ralphy mock 1.png'].map((img, index) => (
               <Image
                 key={index}
                 src={`/images/${img}`}

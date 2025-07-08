@@ -24,7 +24,7 @@ export default function SkillsCarousel({
   setSelectedIndex: (idx: number | null) => void;
 }) {
   return (
-    <div className="flex items-center gap-6 mt-16">
+    <div className="hidden md:flex items-center gap-6 mt-16">
       {images.map((img, idx) => (
         <button
           key={img.alt}

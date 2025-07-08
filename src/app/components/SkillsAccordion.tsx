@@ -67,7 +67,7 @@ export default function SkillsAccordion({
         setSelectedIndex(idx !== -1 ? idx : null);
       }}
     >
-      {items.map((item, idx) => (
+      {items.map((item) => (
         <AccordionItem
           value={item.title}
           key={item.title}

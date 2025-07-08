@@ -13,13 +13,13 @@ export default function page() {
     { id: 7, src: "/images/model7.jpg", alt: "Image 7" },
     { id: 8, src: "/images/model8.jpg", alt: "Image 8" },
     { id: 9, src: "/images/model9.jpg", alt: "Image 9" },
-    { id: 10, src: "/images/model10.jpeg", alt: "Image 10" },
-    { id: 11, src: "/images/model11.jpeg", alt: "Image 11" },
-    { id: 12, src: "/images/model12.jpeg", alt: "Image 12" },
+    { id: 10, src: "/images/model10.png", alt: "Image 10" },
+    { id: 11, src: "/images/model11.png", alt: "Image 11" },
+    { id: 12, src: "/images/model12.png", alt: "Image 12" },
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-12 bg-gray-100">
+    <section className="w-full mx-auto px-6 lg:px-12 bg-black">
       {/* Header with Links */}
       <div className="flex flex-col md:flex-row items-start">
         {/* Main Title */}
@@ -44,19 +44,29 @@ export default function page() {
         </div>
       </div>
 
-      {/* 3x4 Image Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {contentArray.map((item) => (
-          <div key={item.id} className="relative max-w-full mx-auto">
-            <Image
-              src={item.src}
-              alt={item.alt}
-              width={300} // Adjusted width for consistent sizing
-              height={200} // Adjusted height for consistent sizing
-              className="rounded-lg object-cover"
-            />
-          </div>
-        ))}
+      {/* Responsive Masonry-style Image Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="columns-1 sm:columns-2 md:columns-4 gap-8 space-y-8">
+          {contentArray.map((item, idx) => {
+            const heights = [180, 260, 340, 420, 500];
+            const height = heights[idx % heights.length];
+            return (
+              <div
+                key={item.id}
+                style={{ height: `${height}px` }}
+                className="mb-8 w-full shadow-lg overflow-hidden break-inside-avoid"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={300} // Adjusted width for consistent sizing
+                  height={height} // Randomized height for masonry effect
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -1,16 +1,9 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
-const imageMap = {
-  fullstack: '/images/fullstack.png',
-  ml: '/images/ml.png',
-  engineering: '/images/engineering.png',
-};
 
 export default function MagicMirrorPage() {
-  const [activeSection, setActiveSection] = useState<'fullstack' | 'ml' | 'engineering'>('fullstack');
-
   return (
     <main className="bg-black min-h-screen">
       {/* Hero Section */}
@@ -107,7 +100,7 @@ export default function MagicMirrorPage() {
             </li>
             <li className="flex items-start space-x-4">
               <span className="text-red-500 font-semibold">•</span>
-              <p>Secure session management and RESTful API's</p>
+              <p>Secure session management and RESTful API&apos;s</p>
             </li>
           </ul>
         </div>
