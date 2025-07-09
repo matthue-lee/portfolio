@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Portfolio | Matthew Lee",
-  description: "Welcome to Matthew Lee's portfolio. I am a passionate engineer specializing in web development, smart technologies, and ML/AI. Explore my projects and skills that bridge the gap between engineering and software development.",
+  description: "Welcome to my portfolio. I am a passionate engineer specializing in web development, smart technologies, and ML/AI. Explore my projects and skills that bridge the gap between engineering and software development.",
 };
 
 export default function RootLayout({
@@ -30,11 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black-900`}
       >
-          <meta property="og:title" content="Matthew Lee | Full-Stack Developer & Innovator" />
-          <meta property="og:description" content="Explore Matthew Lee's portfolio, showcasing expertise in full-stack development, responsive design, and innovative web technologies." />
-          <meta property="og:image" content="https://www.matthewleeportfolio.com/images/main3.jpeg" />
-          <meta property="og:url" content="https://www.matthewleeportfolio.com" />
-          <meta property="og:site_name" content="Matthew Lee Portfolio" />
+          <meta property="og:title" content="Portfolio | Matthew Lee" />
+          <meta property="og:description" content="Welcome to my portfolio. I am a passionate engineer specializing in web development, smart technologies, and ML/AI. Explore my projects and skills that bridge the gap between engineering and software development." />
+          <meta property="og:image" content="https://www.matthew-rc-lee.com/images/main3.jpeg" />
+          <meta property="og:url" content="https://www.matthew-rc-lee.com" />
+          <meta property="og:site_name" content="Portfolio | Matthew Lee" />
           <meta property="og:type" content="website" />
         <Navbar/>
         {children}
