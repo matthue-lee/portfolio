@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Matthew Developer Engineer",
-  description: "Welcome to Matthew Lee's portfolio. I am a passionate full-stack developer specializing in responsive design, smart technologies, and innovative web solutions. Explore my projects in web development, robotics, and smart systems.",
+  description: "Welcome to Matthew Lee's portfolio. I am a passionate engineer specializing in web development, smart technologies, and ML/AI. Explore my projects and skills that bridge the gap between engineering and software development.",
 };
 
 export default function RootLayout({
