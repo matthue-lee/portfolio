@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Porfotlio | Matthew Lee",
+  title: "Portfolio | Matthew Lee",
   description: "Welcome to Matthew Lee's portfolio. I am a passionate engineer specializing in web development, smart technologies, and ML/AI. Explore my projects and skills that bridge the gap between engineering and software development.",
 };
 
