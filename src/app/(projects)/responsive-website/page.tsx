@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import PageContainer from '../../components/PageContainer';
 
 const MobileFirstPortfolioPage = () => {
   return (
-    <main className="flex flex-col items-center justify-center px-4 md:px-16 lg:px-32 py-8">
+    <PageContainer className="bg-white text-gray-900">
+      <main className="flex flex-col items-center justify-center px-4 md:px-16 lg:px-32 py-8 min-h-screen">
       <section className="text-center mb-12">
         <div className="max-w-3xl mx-auto px-4">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">Mobile-First Tour Guiding Website</h1>
@@ -81,6 +83,7 @@ const MobileFirstPortfolioPage = () => {
         </div>
       </section>
     </main>
+    </PageContainer>
   );
 };
 

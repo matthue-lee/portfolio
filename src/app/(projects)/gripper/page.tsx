@@ -3,6 +3,7 @@ import React from 'react';
 import EmblaCarousel from '../../components/emblaCarousel';
 import '../../styles/embla.css'; // Ensure your Embla styles are included
 import Image from 'next/image';
+import PageContainer from '../../components/PageContainer';
 
 const SLIDES = [
   '/images/gripper-(1).jpg',
@@ -16,7 +17,8 @@ const OPTIONS = { loop: true }; // Embla carousel options
 
 const Home: React.FC = () => {
   return (
-    <main>
+    <PageContainer className="bg-white text-gray-900">
+      <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gray-100 py-16">
         <div className="max-w-4xl mx-auto text-center px-6 lg:px-12">
@@ -96,6 +98,7 @@ const Home: React.FC = () => {
         </div>
       </section>
     </main>
+    </PageContainer>
   );
 };
 

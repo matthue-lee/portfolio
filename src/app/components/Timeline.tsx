@@ -6,6 +6,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 // This array should match the one in your main page
 const projects = [
 	{
+		title: "β-Sheet Protein Mechanics",
+		slug: "bioinformatics",
+		description:
+			"Small-data structural bioinformatics pipeline predicting β-sheet Fmax using engineered descriptors and nonlinear ensembles (~30% R²).",
+		tags: ["Machine Learning", "Bioinformatics", "Cross-Validation"],
+		images: ["/images/feature_importance_random_forest.png"],
+	},
+	{
 		title: "Lumora",
 		slug: "magic-mirror",
 		description:
@@ -60,13 +68,12 @@ const projects = [
 function AnimatedTimelineCard({ project }: { project: typeof projects[0] }) {
 	const ref = React.useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
-	const x = useTransform(scrollYProgress, [0, 1], [800, 0]);
 	const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
 	return (
 		<motion.div
 			ref={ref}
-			style={{ x, opacity }}
+			style={{ opacity }}
 			transition={{ duration: 0.5, ease: "easeOut" }}
 			className="w-full lg:w-[60%]"
 		>

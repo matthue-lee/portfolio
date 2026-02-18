@@ -1,5 +1,6 @@
 'use client'; // Required for client-side rendering
 import React, { useState } from 'react';
+import PageContainer from '../components/PageContainer';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -67,7 +68,8 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-12 py-16 bg-gray-100">
+    <PageContainer className="bg-gray-100 text-gray-900">
+    <section className="max-w-7xl mx-auto px-6 lg:px-12 py-16 min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Column: Contact Form */}
         <div>
@@ -207,5 +209,6 @@ export default function ContactPage() {
         <p className="mt-4 text-xs text-gray-400">© 2023 All Rights Reserved</p>
       </div> */}
     </section>
+    </PageContainer>
   );
 }

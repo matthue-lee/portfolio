@@ -6,12 +6,14 @@ import { outfit } from "./fonts/outfit";
 import SkillsSection from "./components/SkillsSection";
 import TimelineComponent from "./components/Timeline";
 import HeroText from "./components/HeroText";
+import PageContainer from "./components/PageContainer";
 
 export default function LandingPage() {
 	const textRef = React.useRef<HTMLDivElement>(null);
 
 	return (
-		<div className={`bg-black text-gray-200 min-h-screen w-full overflow-x-hidden overflow-y-hidden ${outfit.className}`}>
+		<PageContainer className={`bg-black text-gray-200 ${outfit.className}`}>
+			<div className="min-h-screen w-full overflow-x-hidden overflow-y-hidden">
 			{/* Intro / About Section */}
 			<section className="px-4 md:px-8 lg:px-12 pt-8">
 				<h1 className="text-gray-200 text-6xl lg:text-8xl font-extrabold leading-tight text-center">
@@ -51,6 +53,7 @@ export default function LandingPage() {
 
 				<TimelineComponent />
 			</section>
-		</div>
+			</div>
+		</PageContainer>
 	);
 }

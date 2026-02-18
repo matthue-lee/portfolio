@@ -2,10 +2,12 @@
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { materialOceanic } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import PageContainer from '../../components/PageContainer';
 
 export default function LibraryTrackerPage() {
   return (
-    <main className="flex flex-col items-center p-8 md:p-16 bg-gray-100 text-gray-900 min-h-screen">
+    <PageContainer className="bg-gray-100 text-gray-900">
+      <main className="flex flex-col items-center p-8 md:p-16 min-h-screen">
       {/* Header Section */}
       <div className="w-full max-w-4xl text-center">
         <h1 className="text-4xl font-bold mt-2 mb-4 md:text-5xl">
@@ -123,5 +125,6 @@ export default function LibraryTrackerPage() {
         </p>
       </section>
     </main>
+    </PageContainer>
   );
 }

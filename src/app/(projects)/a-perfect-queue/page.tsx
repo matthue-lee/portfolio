@@ -1,8 +1,10 @@
 import Image from "next/image";
-// new stuff
+import PageContainer from "../../components/PageContainer";
+
 export default function ProjectPage() {
   return (
-    <main className="flex flex-col items-center p-8 md:p-16 text-black">
+    <PageContainer className="bg-white text-black">
+      <main className="flex flex-col items-center p-8 md:p-16 min-h-screen">
       {/* Header Section */}
       <div className="w-full max-w-3xl text-center">
         <h1 className="text-4xl font-bold mt-2 mb-4 md:text-5xl text-black">
@@ -59,5 +61,6 @@ export default function ProjectPage() {
         </p>
       </div>
     </main>
+    </PageContainer>
   );
 }

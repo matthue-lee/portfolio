@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import PageContainer from '../components/PageContainer';
 
 export default function page() {
   // Define your content array with images
@@ -19,7 +20,8 @@ export default function page() {
   ];
 
   return (
-    <section className="w-full mx-auto px-6 lg:px-12 bg-black">
+    <PageContainer className="bg-black text-gray-200">
+    <section className="w-full mx-auto px-6 lg:px-12">
       {/* Header with Links */}
       <div className="flex flex-col md:flex-row items-start">
         {/* Main Title */}
@@ -69,5 +71,6 @@ export default function page() {
         </div>
       </div>
     </section>
+    </PageContainer>
   );
 }

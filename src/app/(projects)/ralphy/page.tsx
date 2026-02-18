@@ -1,10 +1,12 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
+import PageContainer from '../../components/PageContainer';
 
 export default function RalphyPage() {
   return (
-    <main className="bg-black min-h-screen">
+    <PageContainer className="bg-black text-gray-200">
+      <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-black py-16">
         <div className="max-w-4xl mx-auto text-center px-6 lg:px-12">
@@ -118,5 +120,6 @@ export default function RalphyPage() {
         </div>
       </section> 
     </main>
+    </PageContainer>
   );
 }
