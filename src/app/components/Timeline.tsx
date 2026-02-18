@@ -6,12 +6,20 @@ import { motion, useScroll, useTransform } from "framer-motion";
 // This array should match the one in your main page
 const projects = [
 	{
+		title: "BeeLine Policy Briefing",
+		slug: "beeline",
+		description:
+			"Production AI pipeline turning NZ Beehive releases into verified, citation-backed briefs under strict SLAs.",
+		tags: ["AI Ops", "Flask", "BullMQ"],
+		images: ["/images/beeline/dashboard.png"],
+	},
+	{
 		title: "β-Sheet Protein Mechanics",
 		slug: "bioinformatics",
 		description:
 			"Small-data structural bioinformatics pipeline predicting β-sheet Fmax using engineered descriptors and nonlinear ensembles (~30% R²).",
 		tags: ["Machine Learning", "Bioinformatics", "Cross-Validation"],
-		images: ["/images/feature_importance_random_forest.png"],
+		images: ["/images/compsci380/feature_importance_random_forest.png"],
 	},
 	{
 		title: "Lumora",
@@ -44,7 +52,7 @@ const projects = [
 			"An application that leverages computer vision and OCR technologies to automatically detect and extract book titles from images of book spines.",
 		tags: ["Library Management", "Easy Tracking", "User-Friendly"],
 		images: [
-			"https://images.unsplash.com/photo-1498116535454-8877d66c3b83?q=80&w=2967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			"/images/library-tracker/detection.jpg",
 		],
 	},
     {
@@ -54,14 +62,6 @@ const projects = [
 			"An intuitive playlist creation tool that allows users to effortlessly generate playlists from their recently queued songs.",
 		tags: ["UI Design", "API-Integration", "OAuth flow"],
 		images: ["/images/a perfect queue home.jpeg"],
-	},
-    {
-		title: "Responsive Website",
-		slug: "responsive-website",
-		description:
-			"A website designed to offer a seamless user experience across devices, adapting dynamically to mobile, tablet, and desktop layouts.",
-		tags: ["Responsive Design", "Dynamic Layouts", "Cross-Device Compatibility"],
-		images: ["/images/responsive comparison.png"],
 	},
 ];
 

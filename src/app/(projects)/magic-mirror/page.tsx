@@ -3,132 +3,217 @@ import React from 'react';
 import Image from 'next/image';
 import PageContainer from '../../components/PageContainer';
 
+const stackChips = [
+	'Next.js App Router',
+	'MagicMirror²',
+	'Supabase Auth & RLS',
+	'OAuth (Google · Spotify · Outlook)',
+	'Google Places API',
+	'Tailwind UI system',
+];
+
+const dataFlow = [
+	'Mirror boots → `mirror-auth` requests UUID + JWT via `/api/issueMirrorToken` and renders a device QR code.',
+	'User scans QR, authenticates on phone, and `/api/linkMirrorID` binds mirror ↔ user identity in Supabase/Mongo.',
+	'Loader holds MagicMirror modules until Supabase confirms pairing via `/api/checkSession` polling.',
+	'JWT-protected modules call `/api/getLocation|getEmail|getSpotifyPlaying|getGoogleCalendarEvents` with mirror UUID headers.',
+	'Edge Functions/fetchers refresh OAuth tokens server-side, rewrite module configs, and stream commute/weather context back to the device.',
+];
+
+const keyDecisions = [
+	'Auth-only boot path so mirrors stay inert until a user proves ownership with QR pairing.',
+	'Server-side OAuth custody—hardware only holds Lumora-issued JWTs, never Google/Spotify secrets.',
+	'Supabase Row-Level Security enforces which mirrors can reach personalization rows.',
+	'Next.js API routes double as the aggregation layer for commute, calendar, and media services.',
+];
+
+const innovations = [
+	{
+		title: 'QR Pairing Flow',
+		detail:
+			'`mirror-auth` renders device-specific QR codes and polls `/api/checkSession` until Supabase signals a successful link—no keyboard required.',
+	},
+	{
+		title: 'Secure Mirror Identity',
+		detail:
+			'Every mirror gets a UUID + JWT combo. Modules sign each request, and Supabase RLS gates which rows or OAuth tokens it can touch.',
+	},
+	{
+		title: 'OAuth Aggregation Layer',
+		detail:
+			'Edge Functions broker Google/Spotify/Outlook scopes so node helpers only see Lumora JWTs, simplifying renewals and audits.',
+	},
+	{
+		title: 'Personalisation Engine',
+		detail:
+			'Dashboard writers update commute routes, location, and service toggles; `/api/getLocation` et al. push those into MagicMirror at runtime.',
+	},
+	{
+		title: 'Modular Runtime',
+		detail:
+			'`Loader.loadDeferredModules` injects weather/calendar/music widgets only after auth, allowing product-tier feature flags.',
+	},
+];
+
+const challenges = [
+	'Factory-reset trust chain: solved with UUID storage plus QR confirmation and Supabase-backed polling.',
+	'OAuth secrets on hardware: addressed by proxying every integration through JWT-guarded Next.js APIs.',
+	'Dynamic module config: runtime rewrites and node-helpers keep upstream MagicMirror modules untouched.',
+	'UX continuity: mirror-auth hides itself and broadcasts `USER_AUTHENTICATED_DETAILS` while deferred modules spin up.',
+];
+
+const outcomes = [
+	'Pairing completes after a single QR scan (~10 seconds of polling) with no data leaving the mirror pre-auth.',
+	'Weather, calendar, email, and Spotify modules now call JWT-only APIs, keeping OAuth refresh tokens confined to Supabase.',
+	'Dashboard JSON manifests let ops toggle which modules appear per hardware SKU without reflashing.',
+	'Google Places commute data and market feeds slot into mirrors via backend releases alone.',
+];
+
+
+const galleryImages = ['coloredMirror.jpg', 'Bathroom render.png', 'first render.png', 'mockup desktop.png', 'mockup laptop.png'];
 
 export default function MagicMirrorPage() {
-  return (
-    <PageContainer className="bg-black text-gray-200">
-      <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-black py-16">
-        <div className="max-w-4xl mx-auto text-center px-6 lg:px-12">
-          <h1 className="text-5xl lg:text-6xl font-bold text-gray-200 leading-tight">
-            Lumora and Lamina OS
-          </h1>
-          <p className="mt-4 text-lg lg:text-xl text-gray-200">
-            A sleek and innovative smart mirror system that integrates modern
-            design with real-time functionality, making your day smarter and more efficient.
-          </p>
-        </div>
-        <div className="mt-12 w-full relative aspect-w-16 aspect-h-9">
-          <Image
-            src="/images/mobile signup mockup.png"
-            alt="Magic Mirror Hero"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg shadow-lg"
-          />
-        </div>
-      </section>
+	return (
+		<PageContainer className="bg-black text-gray-200">
+			<main className="min-h-screen space-y-16">
+				<section className="relative px-6 py-16">
+					<div className="mx-auto max-w-5xl text-center">
+						<p className="text-sm uppercase tracking-[0.4em] text-pink-200">Lumora · Lamina OS</p>
+						<h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+							Luxury smart mirrors that stay personal without leaking secrets
+						</h1>
+						<p className="mt-6 text-lg text-gray-300">
+							Led full-stack development of a MagicMirror-based platform with secure QR pairing, Supabase-backed personalization, and OAuth aggregation so commute, calendar, and music data follow the owner from phone to glass in under 30 seconds.
+						</p>
+					</div>
+					<div className="relative mx-auto mt-12 aspect-[16/9] w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10">
+						<Image
+							src="/images/mobile signup mockup.png"
+							alt="Lumora QR pairing experience"
+							fill
+							className="object-cover"
+							sizes="(max-width: 1024px) 100vw, 960px"
+						/>
+					</div>
+				</section>
 
-      {/* Tech Stack & About Section Side by Side */}
-      <section className="px-4 md:px-8 lg:px-12 mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Tech Stack + Image */}
-          <div>
-            <h2 className="text-3xl lg:text-5xl font-bold text-gray-200 mb-6">Tech Stack</h2>
-            <div className="flex flex-wrap gap-2 text-sm text-gray-300 mb-8">
-              {["Next.js","React","TypeScript","Tailwind CSS","Framer Motion","Supabase","Firebase","MongoDB","Node.js","Python","OpenAI API","Vercel"].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 border border-gray-600 rounded-full hover:bg-gray-800 transition"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg">
-              <Image
-                src="/images/mobile signup mockup.png"
-                alt="Mobile Signup Mockup"
-                fill
-                className="rounded-lg object-cover"
-                sizes="(max-width: 768px) 100vw, 700px"
-              />
-            </div>
-          </div>
-          {/* About Section */}
-          <div>
-            <h2 className="text-3xl font-semibold text-gray-200 mb-6">About Lumora</h2>
-            <p className="text-gray-200 text-lg leading-relaxed mb-6">
-              Lumora is the hardware and software platform that powers the smart mirror. Built using Electron, React, and Node.js, it provides a seamless user experience with real-time updates on weather, calendar events, and news.
-            </p>
-            <p className="text-gray-200 text-lg leading-relaxed mb-6">
-              I created a custom OS, Lamina OS, allowing the mirror to function independently. My first foray into creating an operating system, I worked off a fork of the open-source project MagicMirror, which is a popular platform for building smart mirrors. Lamina OS is designed to be lightweight and efficient, ensuring that the mirror operates smoothly while providing essential features like weather updates, calendar synchronization, and customizable widgets. Where I believe my new OS really shines, is through the Authentication module. With a QR code based auth flow, it allows a user to authenticate their mirror, and securely link accounts via the Personalisation Engine. 
-            </p>
-            <p className="text-gray-200 text-lg leading-relaxed mb-6">
-              The Personalisation Engine is a key feature of Lumora. A Next.JS web app, it allows users to securely link and manage various aspects of their mirror. Integrations with services such as Outlook, Gmail, Google Calendar, Spotify and more are available. 
-            </p>
-          </div>
-        </div>
-      </section>
+				<section className="px-6">
+					<div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-8">
+						<h2 className="text-3xl font-semibold text-white">Problem</h2>
+						<p className="mt-4 text-gray-300">
+							Status-quo mirrors are hobby builds: static configs, no identity model, and no secure way to surface calendars or music. Luxury buyers expect a mirror that pairs instantly, respects privacy, and adapts across product tiers without touching JSON on-device.
+						</p>
+						<p className="mt-4 text-gray-300">
+							Lumora solves this by issuing mirror UUIDs, hiding OAuth credentials behind the cloud, and giving ops a dashboard to toggle experiences remotely.
+						</p>
+					</div>
+				</section>
 
+				<section className="px-6">
+					<div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+						<div>
+							<h2 className="text-3xl font-semibold text-white">Technical Architecture</h2>
+							<p className="mt-4 text-gray-300">
+								MagicMirror² handles rendering while Next.js App Router APIs, Supabase, and Firebase Auth orchestrate identity, pairing, and personalization. All OAuth tokens stay in Supabase/Mongo; mirrors only ever present Lumora-issued JWTs.
+							</p>
+							<div className="mt-6 space-y-3 text-sm text-gray-200">
+								{stackChips.map((chip) => (
+									<span key={chip} className="inline-block rounded-full border border-white/20 px-3 py-1 text-xs uppercase tracking-[0.25em] text-gray-300">
+										{chip}
+									</span>
+								))}
+							</div>
+						</div>
+						<div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+							<h3 className="text-sm uppercase tracking-[0.35em] text-pink-200">Data Flow</h3>
+							<ol className="mt-4 space-y-3 text-sm text-gray-200">
+								{dataFlow.map((item, idx) => (
+									<li key={item} className="flex gap-3">
+										<span className="font-semibold text-pink-300">{idx + 1}.</span>
+										<span>{item}</span>
+									</li>
+								))}
+							</ol>
+						</div>
+					</div>
+					<div className="mx-auto mt-10 max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-6">
+						<h3 className="text-sm uppercase tracking-[0.35em] text-pink-200">Key Decisions</h3>
+						<ul className="mt-4 space-y-3 text-gray-200">
+							{keyDecisions.map((decision) => (
+								<li key={decision} className="flex gap-3">
+									<span className="mt-1 h-2 w-2 rounded-full bg-pink-300" />
+									<span>{decision}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
 
-      {/* Features Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-semibold text-gray-200 text-center lg:text-left">
-            Key Features
-          </h2>
-          <ul className="mt-8 space-y-4 text-lg text-gray-200">
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
-              <p>Real-time weather updates integrated through OpenWeather API.</p>
-            </li>
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
-              <p>Calendar synchronization for daily event tracking.</p>
-            </li>
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
-              <p>Customizable widgets for news, clock, and more.</p>
-            </li>
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
-              <p>Encrypted and secure OAuth flows, including external sources like Google and Outlook</p>
-            </li>
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
-              <p>Custom OS with QR-Code based Auth Flow</p>
-            </li>
-            <li className="flex items-start space-x-4">
-              <span className="text-red-500 font-semibold">•</span>
-              <p>Secure session management and RESTful API&apos;s</p>
-            </li>
-          </ul>
-        </div>
-      </section>
+				<section className="px-6">
+					<div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+						<div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+							<h2 className="text-3xl font-semibold text-white">Core Innovations</h2>
+							<ul className="mt-6 space-y-4 text-gray-200">
+								{innovations.map((innovation) => (
+									<li key={innovation.title}>
+										<p className="text-sm uppercase tracking-[0.3em] text-pink-200">{innovation.title}</p>
+										<p className="text-sm text-gray-300">{innovation.detail}</p>
+									</li>
+								))}
+							</ul>
+						</div>
+						<div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+							<h2 className="text-3xl font-semibold text-white">Engineering Challenges</h2>
+							<ul className="mt-6 space-y-3 text-gray-200">
+								{challenges.map((challenge) => (
+									<li key={challenge} className="flex gap-3">
+										<span className="mt-1 h-2 w-2 rounded-full bg-pink-300" />
+										<span>{challenge}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				</section>
 
-      {/* Gallery Section */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-semibold text-gray-200 text-center lg:text-left">
-            Gallery
-          </h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {['coloredMirror.jpg', 'Bathroom render.png', 'first render.png', 'mockup desktop.png', 'mockup laptop.png'].map((img, index) => (
-              <Image
-                key={index}
-                src={`/images/${img}`}
-                alt={`Magic Mirror View ${index + 1}`}
-                width={400}
-                height={300}
-                className="rounded-lg object-cover shadow-md"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-    </PageContainer>
-  );
+				<section className="px-6">
+					<div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+						<div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+							<h2 className="text-3xl font-semibold text-white">Results & Outcomes</h2>
+							<ul className="mt-6 space-y-3 text-gray-200">
+								{outcomes.map((outcome) => (
+									<li key={outcome} className="flex gap-3">
+										<span className="mt-1 h-2 w-2 rounded-full bg-pink-300" />
+										<span>{outcome}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section className="px-6 pb-16">
+					<div className="mx-auto max-w-6xl">
+						<h2 className="text-3xl font-semibold text-white">Hardware & UI Gallery</h2>
+						<p className="mt-4 text-gray-300">
+							Frames from the Athena, Apollo, and Lunar collections share the same software core. These renders show how the authenticated runtime blends with luxury interiors while reflecting commute, media, and inbox modules.
+						</p>
+						<div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+							{galleryImages.map((img, index) => (
+								<div key={img} className="overflow-hidden rounded-3xl border border-white/10">
+									<Image
+										src={`/images/${img}`}
+										alt={`Lumora render ${index + 1}`}
+										width={600}
+										height={400}
+										className="h-full w-full object-cover"
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+			</main>
+		</PageContainer>
+	);
 }
