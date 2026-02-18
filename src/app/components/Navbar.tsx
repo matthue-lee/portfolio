@@ -29,15 +29,15 @@ export default function Example() {
 
         {/* Right-Aligned Navigation Links */}
         <div className="hidden lg:flex lg:gap-x-12 lg:justify-end flex-1">
-          <a href="/contact" className="text-sm font-semibold text-gray-500">
+          {/* <a href="/contact" className="text-sm font-semibold text-gray-500">
             contact
-          </a>
+          </a> */}
           <Link href="/" className="text-sm font-semibold text-gray-500">
-            about
+            home
           </Link>
-          <a href="/modelling" className="text-sm font-semibold text-gray-500">
+          {/* <a href="/modelling" className="text-sm font-semibold text-gray-500">
             modelling
-          </a>
+          </a> */}
         </div>
 
         {/* Mobile Menu Button */}
