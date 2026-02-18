@@ -9,45 +9,61 @@ const stackHighlights = [
 
 const architectureStages = [
 	{
-		title: 'Scheduler & Queues',
-		description:
-			'Cron-grade scheduler seeds BullMQ queues for ingest, summarize, verify, embed, link, and entity workflows. Jobs persist with retry/dead-letter behavior so no release is lost.',
-	},
-	{
 		title: 'Ingestion Pipeline',
 		description:
-			'RSS fetch → HTML cleaning → dedupe → Postgres storage happen within a single orchestrator. Summary/verification/entity extraction hooks run in parallel for speed.',
+			'`IngestionPipeline` wires RSS fetching, article retrieval, HTML cleaning, DB upserts, summary generation, entity extraction, embedding upkeep, and cross-linking (pipeline.py).',
 	},
 	{
-		title: 'AI Layer',
+		title: 'Feed Handling',
 		description:
-			'GPT-4o-mini prompt templates are versioned and validated with schema-enforced responses. Claims cite release sentences and flow through verification before publication.',
+			'RSS modules respect robots.txt, cooldowns, and canonical IDs before hitting cleaner/storage layers (rss.py, cleaner.py, storage.py).',
 	},
 	{
-		title: 'Search & Linking',
+		title: 'Flask API',
 		description:
-			'Meilisearch indexes BM25 text while pgvector stores embeddings. Hybrid retrieval powers cross-links to Stuff/RNZ coverage for every claim.',
+			'Health, metrics, `/ingest/run`, `/releases`, hybrid `/search/*`, `/jobs`, and `/costs` endpoints are instrumented for Prometheus (app.py).',
 	},
 	{
-		title: 'Observability & Cost',
+		title: 'Schedulers & CLI',
 		description:
-			'Prometheus metrics, Grafana Alloy dashboards, Redis cost breaker, and per-call token accounting keep the stack reliable and within budget.',
+			'CLI backfills ingestion jobs while the async scheduler loops work on cadences and exposes its own metrics (cli.py, scheduler/service.py).',
 	},
 ];
 
 const deliverables = [
-	'Structured ingestion API exposing /releases, /search, /jobs, /costs, and /metrics with OTP-protected admin flows.',
-	'LLM pipeline logging prompts, schema versions, tokens, latency, cost, and traceable citations.',
-	'Hybrid Meilisearch + pgvector retrieval for stance-aware linking to external coverage.',
-	'Gold-standard evaluation datasets with nightly ROUGE/NDCG targets and Github Actions enforcement.',
-	'Runbook-driven operations with Docker Compose stack, Grafana/Loki configs, and incident playbooks.',
+	'Production Flask API with `/releases`, `/search`, `/jobs`, `/ingest/run`, `/costs`, and `/metrics`, plus OTP-only admin routes.',
+	'LLM summaries + verification pipeline with Redis caching, prompt guardrails, token/cost logging, and claim persistence.',
+	'Hybrid search layer synchronizing Meilisearch indexes and pgvector embeddings for releases + news articles.',
+	'Docker Compose stack deploying Postgres+pgvector, Redis, Meilisearch, Flask API, scheduler, Node workers, and Grafana Alloy.',
+	'Docs/runbooks, monitoring guides, and evaluation datasets for reproducible operations.',
+];
+
+const entitySearch = [
+	'Entity extraction combines curated NZ dictionaries, regex detectors, spaCy models, and canonicalizers before persisting normalized entities + mentions (entity_extraction/*).',
+	'External news RSS feeds are ingested, deduped, embedded, entity-tagged, and pruned for cross-linking (crosslink/news_ingestor.py).',
+	'Hybrid linker falls back from semantic hits to lexical cosine similarity so every release can cite rationale-backed external articles (crosslink/linker.py).',
+	'Search service keeps Meilisearch indexes and pgvector embeddings in sync while embeddings come from the OpenAI-backed service (search/service.py, embeddings/service.py).',
+];
+
+const queueAutomation = [
+	'BullMQ workers share a base class that streams metrics, stores runs/failures in Postgres, and currently logs placeholder ingest/summarize jobs (workers/src/workers/*).',
+	'Worker metrics registry + Express server expose `/health` and `/metrics` so queue depth and latency stay observable.',
+	'CLI helpers enqueue demo work or replay failed jobs from the database, speeding up retry workflows.',
+	'Python scripts such as `generate_summaries.py` let operators backfill summaries without touching the API.',
+];
+
+const operationsList = [
+	'Passwordless admin login, bearer sessions, audit logs, and JSON APIs for entities, flags, and job runs live under `/api/admin/*`.',
+	'Prometheus and Sentry instrumentation span ingestion runs, scheduler jobs, RSS fetches, HTTP routes, summaries, verification, and news ingestion.',
+	'Docker Compose provisions Postgres+pgvector, Redis, Meilisearch, API, scheduler, Node worker, and Grafana Alloy so local stacks mirror staging.',
+	'Monitoring guides, evaluation datasets, and runbooks document scrape configs, dashboards, alert ideas, and dataset refresh steps.',
 ];
 
 const nextSteps = [
-	{ title: 'Mobile UX', detail: 'Expo/React Native client for offline browsing of releases and briefs.' },
-	{ title: 'Email Digest', detail: 'Daily Resend-powered digest with ministry filters and personalization.' },
-	{ title: 'Admin Enhancements', detail: 'Prompt testing harness, entity merges, QA overrides for non-technical reviewers.' },
-	{ title: 'Launch Readiness', detail: 'Fly.io deployment, 200 concurrent user load tests, and runbook handoff.' },
+	{ title: 'Queue automation', detail: 'Populate BullMQ workers with real ingest/summary tasks and wire cost breaker hooks.' },
+	{ title: 'Search UX', detail: 'Expose the existing hybrid search endpoints through a React client or CLI to validate relevance.' },
+	{ title: 'Evaluation loop', detail: 'Wire the evaluation datasets into CI to run nightly ROUGE/NDCG and retrieval metrics.' },
+	{ title: 'Admin tooling', detail: 'Expand /api/admin flows for prompt testing, entity QA, and job overrides.' },
 ];
 
 export default function BeeLinePage() {
@@ -60,7 +76,7 @@ export default function BeeLinePage() {
 						Transforming Beehive releases into fast, trustworthy briefings
 					</h1>
 					<p className="mt-6 text-lg text-slate-200">
-						BeeLine ingests official NZ government communications, verifies every claim, and publishes two-minute briefs with citations and cross-news context. The production pipeline combines deterministic ingestion, prompt-versioned summarization, hybrid retrieval, and Redis-backed cost controls aimed at newsroom-grade reliability.
+						BeeLine ingests official NZ government communications, summarizes them with GPT-4o-mini, verifies each claim, and cross-links releases to independent coverage. Everything from RSS ingestion to LLM guardrails and cost tracking is implemented in the repository—no vaporware, just a production-ready stack.
 					</p>
 					<div className="mt-8 grid gap-4 rounded-3xl border border-slate-800/70 bg-slate-900/40 p-6 sm:grid-cols-3">
 						{stackHighlights.map((item) => (
@@ -76,10 +92,10 @@ export default function BeeLinePage() {
 					<div className="space-y-6">
 						<h2 className="text-3xl font-semibold text-white">System Overview</h2>
 						<p className="text-slate-200">
-							The ingest service exposes REST endpoints for releases, search, jobs, costs, and metrics. Admin-only OTP flows unlock entity QA and flag resolution, while every AI call logs prompt version, latency, tokens, and cost so operations can trace statements back to their sources.
+							The Flask API ships health, metrics, `/ingest/run`, `/releases`, `/search`, `/jobs`, `/costs`, and OTP-gated admin routes. Every LLM call records prompt versions, latency, token counts, and costs so statements can be traced back to the source sentence.
 						</p>
 						<p className="text-slate-200">
-							A scheduler seeds BullMQ queues every few minutes, feeding parallel workers for summarization, verification, embedding, and cross-linking. Outputs flow into Postgres, pgvector, and Meilisearch so briefs gain contextual coverage in under a minute.
+							CLI tooling and the Python scheduler can run or backfill ingestion jobs on configurable cadences. BullMQ workers already stream metrics and log placeholder ingest/summarize jobs, ready to be wired into the pipeline as the next milestone.
 						</p>
 					</div>
 					<div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-6">
@@ -100,7 +116,7 @@ export default function BeeLinePage() {
 						<div>
 							<h2 className="text-3xl font-semibold text-white">Structured AI Pipeline</h2>
 							<p className="mt-4 text-slate-200">
-								Prompt templates are version-controlled with weighted rollout support. GPT-4o-mini responses pass through Zod-style schema validation, sentence-level verification, and citation tagging before landing in Postgres. Redis caches deterministic entity extraction and houses a circuit breaker that flips to extractive summaries when costs near hourly/daily/monthly limits.
+								`beeline_ingestor/summarization/service.py` selects active prompt templates, caches outputs in Redis, records token/cost telemetry, and persists structured payloads. Claims flow into verification services (`verification/*`), which retrieve evidence sentences and flag questionable statements before surfacing them via the API.
 							</p>
 							<ul className="mt-6 space-y-3 text-slate-200">
 								<li>Hybrid BM25/vector search ensures briefs link to Stuff/RNZ coverage without hallucination.</li>
@@ -123,14 +139,14 @@ export default function BeeLinePage() {
 				</section>
 
 				<section className="mx-auto max-w-6xl rounded-3xl border border-slate-800 bg-slate-900/40 p-8">
-					<h2 className="text-3xl font-semibold text-white">Visuals in Progress</h2>
-					<p className="mt-4 text-slate-200">
-						Dashboard and queue screenshots are in development. In the meantime, the published <Link href="/papers/beeline-runbook.md" target="_blank" rel="noreferrer" className="text-amber-300 underline underline-offset-4">draft runbook</Link> documents incident flows, cost breaker steps, and queue recovery checklists.
-					</p>
+					<h2 className="text-3xl font-semibold text-white">Entities, Linking & Search</h2>
 					<ul className="mt-6 space-y-3 text-slate-200">
-						<li>Target visuals: scheduler timeline, ingestion job board, admin QA flow, and upcoming React Native concepts.</li>
-						<li>Each will include annotations highlighting metrics, prompts, and schema traces.</li>
-						<li>Links will be added once real screenshots replace placeholders.</li>
+						{entitySearch.map((item) => (
+							<li key={item} className="flex gap-3">
+								<span className="mt-1 h-2 w-2 rounded-full bg-amber-300" />
+								<span>{item}</span>
+							</li>
+						))}
 					</ul>
 				</section>
 
@@ -141,9 +157,12 @@ export default function BeeLinePage() {
 							Docker Compose spins up Postgres, Redis, Meilisearch, API, scheduler, workers, and Grafana Alloy. Monitoring configs export metrics + alerts to Grafana Cloud, and runbooks document responses for cost breaker events, queue backlog, or LLM outages.
 						</p>
 						<ul className="mt-6 space-y-3 text-sm text-slate-200">
-							<li>Scripts handle embedding backfills, search evals, prompt overrides, and breaker admin.</li>
-							<li>Evaluation datasets ensure nightly ROUGE/NDCG regressions are caught in CI.</li>
-							<li>OTP-protected admin endpoints secure QA + override workflows.</li>
+							{operationsList.map((item) => (
+								<li key={item} className="flex gap-3">
+									<span className="mt-1 h-2 w-2 rounded-full bg-amber-300" />
+									<span>{item}</span>
+								</li>
+							))}
 						</ul>
 					</div>
 					<div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-8">
@@ -159,9 +178,17 @@ export default function BeeLinePage() {
 					</div>
 				</section>
 
-				<p className="text-center text-xs uppercase tracking-[0.4em] text-slate-500">
-					Every statement cites a source · Automated flags keep humans in the loop
-				</p>
+				<section className="mx-auto max-w-6xl rounded-3xl border border-slate-800 bg-slate-900/40 p-8">
+					<h2 className="text-3xl font-semibold text-white">Queues & Automation</h2>
+					<ul className="mt-6 space-y-3 text-slate-200">
+						{queueAutomation.map((item) => (
+							<li key={item} className="flex gap-3">
+								<span className="mt-1 h-2 w-2 rounded-full bg-amber-300" />
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</section>
 			</main>
 		</PageContainer>
 	);

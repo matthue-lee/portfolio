@@ -62,7 +62,7 @@ const resultsComparison = [
 		title: 'Linear baselines',
 		summary: 'Length-only, Ridge, and Lasso regressors struggled with the multi-collinear 70-feature space.',
 		metrics: [
-			{ label: 'R²', value: '≤ 0.0 (often negative)' },
+			{ label: 'R²', value: '≤ 0.0 (often 	)' },
 			{ label: 'MAE', value: '≈ 0.18' },
 			{ label: 'RMSE', value: '≈ 0.25' },
 		],
@@ -136,7 +136,7 @@ export default function ProjectPage() {
 							View GitHub Repository
 						</Link>
 						<Link
-							href="/papers/compsci380-Final.pdf"
+							href="/papers/compsci_380-Final.pdf"
 							target="_blank"
 							rel="noreferrer"
 							className="rounded-full border border-slate-400 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-white hover:text-white"
@@ -242,9 +242,6 @@ export default function ProjectPage() {
 									</li>
 								))}
 							</ul>
-							<p className="mt-6 text-sm text-slate-400">
-								Validation explicitly communicates limitations: R² values near 0.30 do not imply causal understanding of mechanostability; they simply show partial predictability under rigorous splitting.
-							</p>
 						</div>
 						<div className="space-y-6">
 							<h3 className="text-3xl font-semibold text-white">Model Results</h3>
@@ -278,10 +275,7 @@ export default function ProjectPage() {
 
 			<section className="bg-slate-900/40 px-6 py-16">
 				<div className="mx-auto max-w-6xl">
-					<h2 className="text-3xl font-semibold text-white">Visual Results Gallery</h2>
-					<p className="mt-4 text-slate-200">
-						Each visualization supports the validation narrative—highlighting correlation structure, nonlinear response patterns, and ensemble importances without implying causality.
-					</p>
+					<h2 className="text-3xl font-semibold text-white">Results</h2>
 					<div className="mt-10 grid gap-8 md:grid-cols-2">
 						{galleryImages.map((item) => (
 							<figure key={item.title} className="rounded-3xl border border-slate-800 bg-slate-950/40 p-4">
@@ -354,7 +348,7 @@ export default function ProjectPage() {
 								>
 									GitHub Repository
 								</Link>
-								<Link
+							<Link
 									href="/papers/compsci_380-Final.pdf"
 									target="_blank"
 									rel="noreferrer"
