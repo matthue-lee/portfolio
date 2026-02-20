@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import PageContainer from '../../components/PageContainer';
 
 const stackHighlights = [
